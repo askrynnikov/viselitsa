@@ -7,24 +7,24 @@ class Game
   attr_reader :errors, :letters, :good_letters, :bad_letters, :status
 
   def initialize(word)
-    @letters =  convert_string(get_letters(word).join).split(//)
-    @good_letters, @bad_letters  = [], []
+    @letters = convert_string(get_letters(word).join).split(//)
+    @good_letters, @bad_letters = [], []
     @errors, @status = 0, :runs
   end
 
   def next_step(letter)
-    return unless @status == :runs
+    if @status == :runs &&
+      !@good_letters.include?(letter) &&
+      !@bad_letters.include?(letter)
 
-    letter = convert_string(letter)
-    return if @good_letters.include?(letter) || @bad_letters.include?(letter)
-
-    if @letters.include? letter 
-      @good_letters << letter
-      @status = :won if @good_letters.uniq.sort == @letters.uniq.sort
-    else
-      @bad_letters << letter
-      @errors += 1
-      @status = :lost if @errors >= MAXIMUM_ERRORS
+      if @letters.include? letter
+        @good_letters << letter
+        @status = :won if @good_letters.uniq.sort == @letters.uniq.sort
+      else
+        @bad_letters << letter
+        @errors += 1
+        @status = :lost if @errors >= MAXIMUM_ERRORS
+      end
     end
   end
 
@@ -34,7 +34,8 @@ class Game
     while letter == ''
       letter = STDIN.gets.encode('UTF-8').chomp
     end
-    next_step(letter)
+
+    next_step(convert_string(letter))
   end
 
   private
@@ -45,6 +46,6 @@ class Game
   end
 
   def convert_string(string)
-    UnicodeUtils.downcase(string).gsub('ё','е').gsub('й','и')
+    UnicodeUtils.downcase(string).tr('ё', 'е').tr('й', 'и')
   end
 end
