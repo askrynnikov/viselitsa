@@ -12,4 +12,7 @@
 
 Список слов можно изменять и дополнять.
 
+[![Code Climate](https://codeclimate.com/github/askrynnikov/viselitsa/badges/gpa.svg)](https://codeclimate.com/github/askrynnikov/viselitsa)
+[![Test Coverage](https://codeclimate.com/github/askrynnikov/viselitsa/badges/coverage.svg)](https://codeclimate.com/github/askrynnikov/viselitsa/coverage)
+
 [About writing and formatting on GitHub](https://help.github.com/articles/about-writing-and-formatting-on-github/)
