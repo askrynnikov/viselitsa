@@ -13,10 +13,7 @@ class Game
   end
 
   def next_step(letter)
-    if @status == :runs &&
-      !@good_letters.include?(letter) &&
-      !@bad_letters.include?(letter)
-
+    unless @good_letters.include?(letter) || @bad_letters.include?(letter)
       if @letters.include? letter
         @good_letters << letter
         @status = :won if @good_letters.uniq.sort == @letters.uniq.sort
@@ -35,7 +32,7 @@ class Game
       letter = STDIN.gets.encode('UTF-8').chomp
     end
 
-    next_step(convert_string(letter))
+    next_step(convert_string(letter)) if @status == :runs
   end
 
   private
