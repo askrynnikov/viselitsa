@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require_relative 'game.rb'
-require_relative 'result_printer.rb'
-require_relative 'word_reader.rb'
+require_relative 'lib/game'
+require_relative 'lib/result_printer'
+require_relative 'lib/word_reader'
 
 puts "Игра виселица. 2016 Andrey Skrynnikov\n\n"
 
